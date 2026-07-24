@@ -7,7 +7,7 @@
 <meta name="description" content="Amirshayan Orfi builds cinematic worlds with AI — directed, graded and cut by hand. AI artist, video creator, motion designer.">
 <meta property="og:title" content="Amirshayan Orfi — AI Artist & Motion Designer">
 <meta property="og:description" content="Cinematic worlds generated frame by frame, then directed, graded and cut by hand.">
-<meta property="og:image" content="v1_poster.jpg">
+<meta property="og:image" content="v6_poster.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -360,14 +360,14 @@ footer .fine{font-family:var(--sans);font-size:.58rem;letter-spacing:.26em;text-
     linear-gradient(180deg,#0B171A 0%,#071013 26%,#040607 58%,#05070A 100%);
 }
 #ambient{
-  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.9;
+  display:none;position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;
   background:
     radial-gradient(62% 52% at 50% -12%, var(--amb1,rgba(67,149,141,.3)), transparent 70%),
     radial-gradient(48% 42% at 85% 112%, var(--amb2,rgba(24,64,61,.45)), transparent 70%);
   transition:--amb1 1.6s ease,--amb2 1.6s ease;
 }
 /* --- god rays: slow light shafts from above, the signature of the films --- */
-#rays{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:.8;transition:opacity 1.2s ease}
+#rays{display:none}
 #rays::before,#rays::after{
   content:"";position:absolute;left:50%;top:-40vh;width:200vw;height:190vh;
   margin-left:-100vw;transform-origin:50% 0;
@@ -416,6 +416,14 @@ body.passage #dust{opacity:.22}
 }
 .reel-btn:hover{border-color:var(--gold);color:var(--gold);letter-spacing:.36em}
 .reel-btn svg{width:11px;height:11px;fill:currentColor}
+.reel-btn+.reel-btn{margin-left:.9rem}
+.reel-modes{display:flex;gap:.6rem;position:absolute;bottom:4.4rem;left:0;right:0;justify-content:center;z-index:2}
+.reel-mode{font-family:var(--sans);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--bone);opacity:.5;border:1px solid rgba(237,232,220,.25);border-radius:99px;
+  padding:.55rem 1.15rem;cursor:pointer;background:none;transition:all .3s ease}
+.reel-mode.on,.reel-mode:hover{opacity:1;border-color:var(--gold);color:var(--gold)}
+.ch-meta .hire{margin-top:1.15rem;font-family:var(--sans);font-size:.56rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--acc);opacity:.9}
 #reel-overlay{
   position:fixed;inset:0;z-index:190;display:none;place-items:center;
   background:rgba(4,5,6,.93);backdrop-filter:blur(14px);
@@ -530,7 +538,7 @@ body.reduce .h-tag,body.reduce .reel-btn,body.reduce #interlude blockquote .wd{o
       <li><a href="#process" data-hover>Process</a></li>
       <li><a href="#contact" data-hover>Contact</a></li>
     </ul>
-    <span id="reel-index"><b>00</b> / 05</span>
+    <span id="reel-index"><b>00</b> / 06</span>
   </div>
 </nav>
 
@@ -541,15 +549,19 @@ body.reduce .h-tag,body.reduce .reel-btn,body.reduce #interlude blockquote .wd{o
 
 <div id="reel-overlay" role="dialog" aria-label="Showreel" aria-hidden="true">
   <button id="close-reel">Close ✕</button>
-  <video id="reel-video" src="showreel.mp4" poster="v1_poster.jpg" playsinline preload="metadata"></video>
-  <span class="reel-cap">Showreel 2026 — five films · original score</span>
+  <video id="reel-video" src="v6.mp4" poster="v6_poster.jpg" playsinline preload="metadata"></video>
+  <span class="reel-cap">Through These Hands — one life in first person · 00:58 · original score</span>
+  <div class="reel-modes" aria-label="Choose reel">
+    <button class="reel-mode on" data-src="v6.mp4" data-cap="Through These Hands — one life in first person · 00:58 · original score">Main film · 58s</button>
+    <button class="reel-mode" data-src="showreel.mp4" data-cap="Showreel — six films in 33 seconds · original score">Montage · 33s</button>
+  </div>
 </div>
 
 <div id="smooth-wrapper"><div id="smooth-content">
 <!-- ============ HERO ============ -->
 <header id="hero">
   <canvas id="hero-canvas"></canvas>
-  <img class="h-fallback" src="v1_poster.jpg" alt="">
+  <img class="h-fallback" src="v6_poster.jpg" alt="">
   <div class="h-veil"></div>
   <div class="h-title">
     <p class="h-eyebrow">AI Artist · Video Creator · Motion Designer</p>
@@ -559,8 +571,9 @@ body.reduce .h-tag,body.reduce .reel-btn,body.reduce #interlude blockquote .wd{o
     </h1>
     <p class="h-tag">Worlds built frame by frame.</p>
     <button class="reel-btn" id="open-reel" data-hover aria-haspopup="dialog">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Showreel — 37s
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Showreel — 58s
     </button>
+    <a class="reel-btn" href="#contact" data-hover>Start a project</a>
   </div>
   <div class="h-meta">
     <span>Moving Image — Portfolio</span>
@@ -590,10 +603,10 @@ body.reduce .h-tag,body.reduce .reel-btn,body.reduce #interlude blockquote .wd{o
     <div class="pin-wrap">
       <div class="strip-title">
         <h2>Selected<br>Works</h2>
-        <span>Five films — drag through the frames</span>
+        <span>Six films — drag through the frames</span>
       </div>
       <div id="track"></div>
-      <div class="strip-meta" aria-hidden="true"><span id="strip-count">F 01 / 20</span><i id="strip-prog"><b></b></i></div>
+      <div class="strip-meta" aria-hidden="true"><span id="strip-count">F 01 / 24</span><i id="strip-prog"><b></b></i></div>
     </div>
   </section>
 
@@ -609,6 +622,7 @@ body.reduce .h-tag,body.reduce .reel-btn,body.reduce #interlude blockquote .wd{o
           <p>A sunken temple. A body remembering the way down. Light arrives from a surface no one recalls leaving.</p>
           <div class="tags"><span>AI Cinematography</span><span>Underwater</span><span>Worldbuilding</span></div>
           <div class="credit">Flux 2 Dev · Wan 2.2 · DaVinci Resolve — 2026</div>
+          <div class="hire">Commission this look — underwater atmosphere · fashion &amp; fragrance films</div>
         </div>
         <div class="ch-media">
           <div class="col-still a" data-depth="1.6"><img src="assets/stills/s1_2.jpg" alt="Frame — The Descent" loading="lazy"></div>
@@ -632,6 +646,7 @@ body.reduce .h-tag,body.reduce .reel-btn,body.reduce #interlude blockquote .wd{o
           <p>Bread from heaven, chains at the wrist. What is given always carries the weight of where it came from.</p>
           <div class="tags"><span>Chiaroscuro</span><span>Desert</span><span>Character</span></div>
           <div class="credit">ComfyUI · ReferenceLatent · Wan 2.2 — 2026</div>
+          <div class="hire">Commission this look — myth &amp; heritage storytelling · title sequences</div>
         </div>
         <div class="ch-media">
           <div class="col-still a" data-depth="1.5"><img src="assets/stills/s2_2.jpg" alt="Frame — The Offering" loading="lazy"></div>
@@ -655,6 +670,7 @@ body.reduce .h-tag,body.reduce .reel-btn,body.reduce #interlude blockquote .wd{o
           <p>Snow on the altar, crows in the colonnade. An old man reads the pool of night at his feet.</p>
           <div class="tags"><span>Monochrome</span><span>Architecture</span><span>Atmosphere</span></div>
           <div class="credit">Flux 2 Dev · ControlNet Depth · DaVinci Resolve — 2026</div>
+          <div class="hire">Commission this look — monumental architecture · brand worldbuilding</div>
         </div>
         <div class="ch-media">
           <div class="col-still a" data-depth="1.55"><img src="assets/stills/s3_1.jpg" alt="Frame — The Roof of the World" loading="lazy"></div>
@@ -691,6 +707,7 @@ body.reduce .h-tag,body.reduce .reel-btn,body.reduce #interlude blockquote .wd{o
           <p>You spent your entire life inside a house someone else drew. The library keeps the blueprints; the glass keeps falling.</p>
           <div class="tags"><span>Gothic</span><span>Grayscale</span><span>Motion Type</span></div>
           <div class="credit">Flux 2 Dev · After Effects · Sound Design — 2026</div>
+          <div class="hire">Commission this look — object cinematography · luxury product films</div>
         </div>
         <div class="ch-media">
           <div class="col-still a" data-depth="1.5"><img src="assets/stills/s4_1.jpg" alt="Frame — The Inheritance" loading="lazy"></div>
@@ -714,6 +731,7 @@ body.reduce .h-tag,body.reduce .reel-btn,body.reduce #interlude blockquote .wd{o
           <p>A white horse among the black. On the far side of the mirror, the smoke is already waiting.</p>
           <div class="tags"><span>High-Key</span><span>Chromatic</span><span>Threshold</span></div>
           <div class="credit">Wan 2.2 · Frame Interpolation · Original Score — 2026</div>
+          <div class="hire">Commission this look — high-key art direction · campaign concepts</div>
         </div>
         <div class="ch-media">
           <div class="col-still a" data-depth="1.55"><img src="assets/stills/s5_1.jpg" alt="Frame — The Crossing" loading="lazy"></div>
@@ -722,6 +740,30 @@ body.reduce .h-tag,body.reduce .reel-btn,body.reduce #interlude blockquote .wd{o
           <div class="col-main" data-video data-depth="0.8" role="button" tabindex="0" aria-label="Play film: The Crossing">
             <video src="v5.mp4" poster="v5_poster.jpg" preload="none" loop playsinline></video>
             <span class="tc">REEL 05</span>
+            <div class="play"><div class="ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="chapter flip" id="ch6" data-idx="06" data-acc="#C97A4A" data-amb1="rgba(201,122,74,.28)" data-amb2="rgba(66,38,22,.48)" style="--acc:#C97A4A">
+      <span class="ch-num" aria-hidden="true">06</span>
+      <div class="ch-grid">
+        <div class="ch-meta">
+          <span class="k">Film 06 — 00:58</span>
+          <h2 data-split>Through These Hands</h2>
+          <p>A curtain breathes, a rope holds, a road opens in the rain. One life, remembered by the hands that held it.</p>
+          <div class="tags"><span>First-Person</span><span>One Life</span><span>Analog Grade</span></div>
+          <div class="credit">Flux 2 Dev · Wan 2.2 · Original Score — 2026</div>
+          <div class="hire">Commission this look — first-person narrative · music videos &amp; brand films</div>
+        </div>
+        <div class="ch-media">
+          <div class="col-still a" data-depth="1.5"><img src="assets/stills/s6_1.jpg" alt="Frame — Through These Hands" loading="lazy"></div>
+          <div class="col-still b" data-depth="1.2"><img src="assets/stills/s6_2.jpg" alt="Frame — Through These Hands" loading="lazy"></div>
+          <div class="col-still c" data-depth="2.1"><img src="assets/stills/s6_4.jpg" alt="Frame — Through These Hands" loading="lazy"></div>
+          <div class="col-main" data-video data-depth="0.8" role="button" tabindex="0" aria-label="Play film: Through These Hands">
+            <video src="v6.mp4" poster="v6_poster.jpg" preload="none" loop playsinline></video>
+            <span class="tc">REEL 06</span>
             <div class="play"><div class="ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div></div>
           </div>
         </div>
@@ -749,7 +791,7 @@ body.reduce .h-tag,body.reduce .reel-btn,body.reduce #interlude blockquote .wd{o
           <figcaption>Self-portrait — Flux 2 Dev, 2026</figcaption>
         </figure>
         <div class="about-stats rv">
-          <div class="stat"><b data-count="5">0</b><span>Self-authored<br>cinematic films</span></div>
+          <div class="stat"><b data-count="6">0</b><span>Self-authored<br>cinematic films</span></div>
           <div class="stat"><b data-count="10000" data-plus="+">0</b><span>LinkedIn<br>connections</span></div>
           <div class="stat"><b data-count="1600" data-plus="+">0</b><span>Weekly<br>impressions</span></div>
           <div class="stat"><b>4K</b><span>Stock footage licensed<br>on Adobe Stock</span></div>
@@ -784,7 +826,7 @@ body.reduce .h-tag,body.reduce .reel-btn,body.reduce #interlude blockquote .wd{o
   <section id="contact">
     <span class="sec-label">Contact</span>
     <h2 class="big" data-split>Have a world in mind?</h2>
-    <p class="sub">Commissions, collaborations, freelance and full-time roles. Based in London with full UK right to work — currently taking on new projects.</p>
+    <p class="sub">Cinematic AI films for music, brands and campaigns — mood pieces, music visuals, title sequences, brand atmosphere. Directed, graded and scored, not just generated. Every look in these six films is available to commission. Based in London with full UK right to work — commissions open.</p>
     <div class="cta-row">
       <a class="btn solid" href="mailto:amirshayanorfi98@gmail.com" data-hover>Email<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
       <a class="btn" href="https://www.linkedin.com/in/amirshayanorfi" target="_blank" rel="noopener noreferrer" data-hover>LinkedIn<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
@@ -929,8 +971,8 @@ function init(isReduce){
 
   /* ---------- filmstrip cells ---------- */
   const track=document.getElementById('track');
-  const names=['The Descent','The Offering','The Roof of the World','The Inheritance','The Crossing'];
-  for(let v=1;v<=5;v++) for(let j=1;j<=4;j++){
+  const names=['The Descent','The Offering','The Roof of the World','The Inheritance','The Crossing','Through These Hands'];
+  for(let v=1;v<=6;v++) for(let j=1;j<=4;j++){
     const c=document.createElement('figure');
     c.className='cell'; c.dataset.target=`ch${v}`; c.setAttribute('data-hover','');
     c.innerHTML=`<img src="assets/stills/s${v}_${j}.jpg" alt="${names[v-1]} — frame ${j}" loading="lazy">
@@ -955,6 +997,12 @@ function init(isReduce){
   reelOv.addEventListener('click',e=>{if(e.target===reelOv)closeReel();});
   reelVid.addEventListener('click',()=>reelVid.paused?reelVid.play():reelVid.pause());
   reelVid.addEventListener('ended',closeReel);
+  const modeBtns=[...document.querySelectorAll('.reel-mode')];
+  const reelCapEl=document.querySelector('.reel-cap');
+  modeBtns.forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();
+    modeBtns.forEach(x=>x.classList.toggle('on',x===b));
+    reelVid.src=b.dataset.src;reelCapEl.textContent=b.dataset.cap;
+    reelVid.currentTime=0;reelVid.muted=false;reelVid.play();}));
   addEventListener('keydown',e=>{if(e.key==='Escape')closeReel();});
 
   /* ---------- process hover image ---------- */
@@ -1053,7 +1101,7 @@ function init(isReduce){
   gsap.to(track,{x:()=>-stripLen(),ease:'none',
     scrollTrigger:{trigger:'#strip',start:'top top',end:()=>'+='+stripLen(),scrub:.6,pin:true,invalidateOnRefresh:true,anticipatePin:1,
       onUpdate:self=>{
-        stripCount.textContent='F '+String(1+Math.round(self.progress*19)).padStart(2,'0')+' / 20';
+        stripCount.textContent='F '+String(1+Math.round(self.progress*23)).padStart(2,'0')+' / 24';
         gsap.set(stripProg,{scaleX:self.progress});
       }}
   });
